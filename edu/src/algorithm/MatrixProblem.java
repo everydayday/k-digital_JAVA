@@ -1,9 +1,9 @@
-package com.ruby.java.ch04;
+package algorithm;
 
 import java.util.Random;
 import java.util.Arrays;
 
-public class Test38Matrix {
+public class MatrixProblem {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -90,6 +90,15 @@ public class Test38Matrix {
 			}
 		}
 		
+		// E 출력
+		System.out.println("Matrix E:");
+		for(int i = 0; i < E.length; i++) {
+			for(int j = 0; j < E[i].length; j++) {
+				System.out.print(E[i][j] + "\t");				
+			}
+			System.out.println("\n");
+		}
+		
 		// 전치 행렬
 		for(int i = 0; i < F.length; i++) {
 			// 절반만 다루기
@@ -97,6 +106,15 @@ public class Test38Matrix {
 				F[i][j] = A[j][i];
 				
 			}
+		}
+		
+		// F 출력
+		System.out.println("Matrix F:");
+		for(int i = 0; i < F.length; i++) {
+			for(int j = 0; j < F[i].length; j++) {
+				System.out.print(F[i][j] + "\t");				
+			}
+			System.out.println("\n");
 		}
 		
 		
