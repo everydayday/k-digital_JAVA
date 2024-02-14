@@ -1,5 +1,7 @@
 package edu;
 
+import java.util.Scanner;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -9,7 +11,11 @@ public class Test {
 			for(int num : arr) {   // 간결한 코딩 - 배열 원소 전부 출력 + 인덱스 사용이 필요 x
 			System.out.print(num + "\t");
 		}
+			
+		Scanner sc = new Scanner(System.in);
 		
+		int a = sc.nextInt();
+		sc.close();
 		
 		
 		

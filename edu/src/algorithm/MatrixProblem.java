@@ -3,6 +3,7 @@ package algorithm;
 import java.util.Random;
 import java.util.Arrays;
 
+// 함수화 해보기
 public class MatrixProblem {
 
 	public static void main(String[] args) {
@@ -61,7 +62,7 @@ public class MatrixProblem {
 		
 		// 행렬 곱 계산 C = A * B
 		// A[3][4] B[4][5] C[3][5]
-		for(int i = 0; i < A.length; i++) {	// 범위가 A까지 맞나?
+		for(int i = 0; i < A.length; i++) {	// 범위: A까지
 			for(int j = 0; j < B[i].length; j++) {	// 열은 B로
 				int sum = 0; // 곱 합
 				// A열 or B 행 부분까지 곱 하기 (= m)
