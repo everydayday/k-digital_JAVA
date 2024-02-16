@@ -1,4 +1,4 @@
-package com.ruby.java.ch05;
+package com.ruby.java.ch06;
 
 public class Armor1 {
 

@@ -1,4 +1,4 @@
-package com.ruby.java.ch05;
+package com.ruby.java.ch06;
 
 class Armor {
 	private String name = "홍길동";

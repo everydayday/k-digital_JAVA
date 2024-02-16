@@ -1,4 +1,4 @@
-package com.ruby.java.ch05;
+package com.ruby.java.ch06;
 
 public class Test01 {
 	static void test(int...v) {

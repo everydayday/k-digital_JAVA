@@ -14,6 +14,9 @@ public class MessengerTest {
 		iphone.setLogin(true);
 		iphone.getMessage();
 		iphone.setMessage("hello");
+		
+		iphone.draw_textBox();
+		
 
 	}
 
