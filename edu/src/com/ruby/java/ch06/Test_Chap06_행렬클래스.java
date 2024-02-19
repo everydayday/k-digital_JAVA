@@ -17,7 +17,7 @@ class Matrix {
 		// 난수로 입력
 		Random rnd = new Random();
 		for(int i = 0; i < rows * cols ; i++) {			
-				data[i] = rnd.nextInt(100);			
+				data[i] = rnd.nextInt(100) + 1;			
 		}
 	}
 	Matrix addMatrix(Matrix b) {
@@ -30,6 +30,7 @@ class Matrix {
 	// 애매하고 어렵다!
 	Matrix multiplyMatrix(Matrix b) {
 		Matrix m = new Matrix(rows, b.cols);
+		/*
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < b.cols; j++) {
 				int sum = 0;
@@ -42,20 +43,74 @@ class Matrix {
 					
 				}
 				m.data[i*b.cols + j] = sum;	// 범위 주의 하기... i * cols 했었어
+			}			
+		}
+		*/
+		
+		// 2 try 살짝 헷갈림
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0 ; j < b.cols; j++) {
+				int sum = 0;
+				for(int k = 0; k < cols ; k++) {
+					sum += data[i*cols + k] * b.data[b.cols*k + j];
+				}
+				
+				m.data[i*b.cols + j] = sum;
+			}
+		}
+		
+		
+		
+		/* 1try
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < b.cols; j++) {
+				int sum = 0;
+				for(int k = 0 ; k < cols; k++) {
+					sum += data[i*cols + k] * b.data[j + b.cols * k];
+				}
+				m.data[i*b.cols + j] = sum;
 			}
 			
 		}
+		*/
+		
 		
 		return m;	
 	}
 	
-	// ********* 못 품 //
+	
 	Matrix transposeMatrix() {
 		// this.cols 안 하고 그냥 cols 해도 되나?
 		Matrix m = new Matrix(cols, rows);
+		/*
 		for(int i = 0 ; i < rows ; i++) {
 			for(int j = 0 ; j < cols; j++) {
-				m.data[i*rows + j] = data[i * cols + j ];
+				//m.data[i*rows + j] = data[i * cols + j ];
+				// m.data [i][j]  = data[j][i] .. 이걸 1차원으로 표현하기
+				System.out.print("data : " + "i = " + i + " j =" + j + " " + data[j * cols + i] + "\t" );
+				//m.data[i * cols + j] = data[j * cols + i];
+				}
+			System.out.println(" ");
+		}*/
+		
+		for(int i = 0 ; i < cols; i++) {
+			for(int j = 0; j < rows; j++) {
+				m.data[i * rows + j] = data[j * cols + i]; 
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// i 와 j 의 범위를 거꾸로 설정했었다.
+		for(int i = 0 ; i < cols ; i++) {
+			for(int j = 0; j< rows; j++) {
+				m.data[i*rows + j] = data[j*cols + i];
 			}
 		}
 		
@@ -92,12 +147,12 @@ public class Test_Chap06_행렬클래스 {
 		
 		A = B.addMatrix(C);
 		B.showMatrix("B[3][4]");C.showMatrix("C[3][4]");A.showMatrix("A[3][4]");
-		System.out.println("*".repeat(50));
+		
 		
 		System.out.println("행렬 곱하기: D[3][5] = B[3][4] * E[4][5]");
 		D = B.multiplyMatrix(E);
 		B.showMatrix("B[3][4]");E.showMatrix("E[4][5]");D.showMatrix("D[3][5]");
-		System.out.println("*".repeat(50));
+		
 		
 		System.out.println("행렬 전치: F[4][3] = B[3][4]의 전치 행렬");
 		F = B.transposeMatrix();

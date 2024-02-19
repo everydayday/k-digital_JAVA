@@ -19,7 +19,7 @@ class Matrix{
 		}
 	}
 	
-	public void print() {
+	public void printMatrix() {
 		for(int i = 0 ; i < r ; i ++) {
 			for(int j = 0; j < c; j++) {
 				System.out.print(arr[i][j] + "\t");
@@ -27,6 +27,8 @@ class Matrix{
 			System.out.println(" ");
 		}
 	}
+	
+	public void hello() {}
 	
 //	public static Matrix sum(Matrix mA, Matrix mB) {
 //		Matrix mC;
@@ -63,11 +65,17 @@ public class Matrix59 {
 			array[min_index] = num;
 			System.out.print(array[i] + "\t");
 		}
+		
+		int[] array1 = {1, 2, 19, 3, 4, 5, 6, 7, 13, 8, 9, 10, 11, 12, 14, 22, 15, 16, 17, 18,  20, 21, 23, 24};
+		Matrix mA = new Matrix(array1, 0, 3, 4);			
+		mA.printMatrix();
+		
+		
+		
 	}
 	
-	int[] array1 = {1, 2, 19, 3, 4, 5, 6, 7, 13, 8, 9, 10, 11, 12, 14, 22, 15, 16, 17, 18,  20, 21, 23, 24};
-	Matrix mA = new Matrix(array1, 0, 3, 4);	
-	mA.print();
+	
+
 
 	
 	
