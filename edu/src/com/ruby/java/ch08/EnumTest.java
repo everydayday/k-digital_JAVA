@@ -12,7 +12,7 @@ enum Mandarin {
 
 	private int price;
 	//enum의 생성자: enum 상수마다 생성자를 호출하여 초기화한다 - enum 객체가 처음 만들어질 때 호출된다
-	Mandarin(int p) {	// 클래스에 생성자와 다르다.
+	Mandarin(int p) {	// 클래스에 생성자와 다르다.	// 생성자 부분인데 생성자가 아니다
 		price = p;
 		System.out.println("enum 생성자 실행:: price = " + price);
 	}
@@ -53,9 +53,16 @@ public class EnumTest {
 		Mandarin m;//생성자를 호출하지 않는다
 		//Mandarin m2 = new Mandarin(100);//생성자를 호출할 수 없다 - 주의점 // 주석 풀면 에러 발생
 		//*
+		
 		Mandarin ma = Mandarin.한라봉;//enum 클래스 생성자가 호출된다 
+		Mandarin m4[] = Mandarin.values();	// Mandarin 형식의 필드 값들이 저장 되겠네
+		Mandarin m5 = Mandarin.황금향;
+		
+		//for(Mandarin mnd : m4) {
+		System.out.println("price = " + m5.getPrice());
+		//}
 		System.out.println("enum 객체 생성전");
-		System.out.println("황금향과 비교: "+ ma.compareTo(Mandarin.레드향));
+		System.out.println("황금향과 비교: "+ ma.compareTo(Mandarin.레드향));	// enum 은 comparTo로 비교해야 한다
 		Mandarin m2	= Mandarin.금귤;
 		Mandarin ma2 = Mandarin.valueOf("레드향");
 		System.out.println(ma2);
