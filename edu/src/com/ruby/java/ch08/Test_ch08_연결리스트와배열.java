@@ -69,13 +69,15 @@ class LinkedList3 {
 			return;
 		}
 		Node3 p = first, q = null;	// p 현재 q 과거
-		while(data < p.data) {
+		while(data > p.data) {		// 부등호 방향 주의: while 문 안
 			q = p; 				// 과거에 현재 넣어주기
 			p = p.link;			// 현재에 미래 넣어주기
 		}
 		// 현재 노드에 값 넣을거다
 		if(p == first) {	// 첫번재 입력
-			first = newNode;
+			q = newNode;	// q에 newnode
+			q.link = first;	// q는 first 가리킴
+			first = q;		// q가 시작 부분
 		}else {
 			q.link = newNode;
 			newNode.link = p;
