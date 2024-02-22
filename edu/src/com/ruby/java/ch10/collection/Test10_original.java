@@ -15,12 +15,12 @@ public static void lotto_generator(int n) {
 	HashSet<Integer> lotto = null;
 	for (int i = 0; i < n; i++) {
 		lotto = new HashSet<Integer>();
-		for (int j = 0; lotto.size() <= 6; j++) {
-			lotto.add(number.nextInt(46));
-			System.out.println("lotto_size = " + lotto.size());
+		for (int j = 0; lotto.size() < 6; j++) {	//플러스 번호는 같을 수 있음
+			lotto.add(number.nextInt(45)+1);
+			//System.out.println("lotto_size = " + lotto.size());
 		}
 		List<Integer> L = new ArrayList<Integer>(lotto);
-		Collections.sort(L);;
+		//Collections.sort(L);
 		System.out.println(L);
 	}
 }

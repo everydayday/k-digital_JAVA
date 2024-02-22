@@ -19,20 +19,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-class ListComparator implements Comparator<List<Integer>>{
-	@Override
-	public int compare(List<Integer> l1, List<Integer> l2) {
-		Iterator<Integer> ait = l1.iterator();
-		Iterator<Integer> bit = l2.iterator();
-		while (ait.hasNext()) {
-			int anum = ait.next();int bnum = bit.next();
-			if ( anum > bnum) return 1;
-			else if (anum < bnum) return -1;
-			
-		}
-		return 0;
-	}
-}
+//class ListComparator implements Comparator<List<Integer>>{
+//	@Override // 지금은 쓸 일 없어
+//	public int compare(List<Integer> l1, List<Integer> l2) {
+//		Iterator<Integer> ait = l1.iterator();
+//		Iterator<Integer> bit = l2.iterator();
+//		while (ait.hasNext()) {
+//			int anum = ait.next();int bnum = bit.next();
+//			if ( anum > bnum) return 1;
+//			else if (anum < bnum) return -1;
+//			
+//		}
+//		return 0;
+//	}
+//}
 public class Test_ch10_lotto당첨처리 {
 
 	public static void main(String[] args) {
@@ -40,12 +40,14 @@ public class Test_ch10_lotto당첨처리 {
 		lotto_generator(10);
 
 	}
-
+	
+	// 복권한장은 set인데
+	// 여러장은 list
 	public static void lotto_generator(int n) {
 		Random number = new Random();
-		HashSet<HashSet<Integer>> lot = new HashSet<>();
-		HashSet<Integer> lotto = null;
-		List<List<Integer>> al = new ArrayList<>();
+		List<ArrayList<Integer>> lot = new ArrayList<>();	// 복권 여러 장
+		HashSet<Integer> lotto = null; // 복권 1장
+		//List<List<Integer>> al = new ArrayList<>();
 		/*
 		 * [[35, 40, 27, 29, 14, 31, 15], [0, 1, 18, 38, 6, 24, 29],
 		 *  [16, 32, 0, 18, 34, 22, 14], [32, 34, 40, 9, 12, 28, 14],
@@ -57,13 +59,17 @@ public class Test_ch10_lotto당첨처리 {
 
 			lotto = new HashSet<>();
 			//구현할 부분
+			for(int j = 0; lotto.size() < 6; j++) {
+				lotto.add(1 + number.nextInt(45));
+			}
+			lotSet.add(lotto);	// 복권 명부에 발행 복권을 추가
 	
 		}
 		System.out.println("\nlot hashset을 출력\n");
 		for (HashSet<Integer> eachLotto : lot) {
 			/*
-			 * 33  1 17 22  6  8  + 보너스번호: 12
-			 *  0  1 18 38  6 24  + 보너스번호: 29
+			 * [33  1 17 22  6  8]  
+			 *  [0  1 18 38  6 24]    <== 이렇게 나오도록 출력  
 			 */
 			//구현할 부분
 		}
@@ -75,25 +81,27 @@ public class Test_ch10_lotto당첨처리 {
 		//hashset를 arrayList로 변환
 		//당첨번호 추첨
 		HashSet<Integer> win = new HashSet<>();
-		for (int j = 0; win.size() < 7; j++) {//6개 번호와 보너스 번호
-			win.add(number.nextInt(46));
+		for (int j = 0; win.size() < 6; j++) {//6개 번호와 보너스 번호
+			win.add(1+number.nextInt(45));
 		}
-		System.out.print("당첨번호: " + win);//6개의 당첨번호와 보너스번호
+		int bonus = 1+ number.nextInt(45);
+		System.out.print("당첨번호: " + win + "보너스 번호=" + bonus);//6개의 당첨번호와 보너스번호
 		// 6개를 맞힌 복권을 찾는다 
 		System.out.println();
-		winnerLotto(win, al);//1등을 찾는다
+		winnerLotto(win, bonus, lottoSet);//1등을 찾는다
 		
 	}
-	static void winnerLotto(HashSet<Integer> w,List<List<Integer>> al ) {
+	static void winnerLotto(HashSet<Integer> w, int bonus, List<HashSet<Integer>> lottoSet ) {
 		// 당첨번호 w에 대하여 발행된 복권 리스트 al의 모든 원소 elem에 대하여 조사한다
-		for (int i = 0; i < al.size(); i++) {
+		for (int i = 0; i < lottoSet.size(); i++) {
 		//구현할 부분
+			checkWinner(w, bn, lottoSet.get(i));			
 		}
 	}
 	static void checkWinner(HashSet<Integer> w,List<Integer> elem) {
 		// 당첨번호 w의 각 숫자를 꺼내 복권 엔트리에 포함되어 있는지를 조사
 		List<Integer> L = new ArrayList<>(w);
-		int count = 0;
+		int count = 0;	// 숫자 번호 몇 개 맞췄나
 		for (int i = 0; i < L.size()-1; i++)
 		{
 			/*
@@ -114,7 +122,7 @@ public class Test_ch10_lotto당첨처리 {
 			System.out.println("4등 복권 " + elem + " 당첨번호:" + w);
 			break;
 		case 5:
-			if (L.get(6).equals(elem.get(6))) { //보너스 번호가 일치하는 지를 조사 
+			// if (L.get(6).equals(elem.get(6))) { //보너스 번호가 일치하는 지를 조사 
 				System.out.println("2등 복권 " + elem + " 당첨번호:" + w);
 				break;
 			}
