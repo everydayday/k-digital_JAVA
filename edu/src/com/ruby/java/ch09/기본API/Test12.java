@@ -14,7 +14,7 @@ public class Test12 {
 		{
 			arrInt[i] = Integer.parseInt(arr[i]);
 		}
-		Arrays.sort(arrInt);
+		Arrays.sort(arrInt);	//참조변수 arrInt[] 변경이 되면 Main()에서도 변경된 값을 사용한다.
 	}
 	static void showNumber(int[]arr) {
 		System.out.println();
@@ -24,8 +24,9 @@ public class Test12 {
 	public static void main(String[] args) {
 		// string 정렬의 문제 
 		String arr[] = {"12", "9", "22", "5"};
+		
 		showData(arr);
-		Arrays.sort(arr);
+		Arrays.sort(arr);	// 정렬가능	// String이라 첫번째 문자로 정렬함
 		showData(arr);
 		
 		int n1 = 10;
@@ -47,6 +48,8 @@ public class Test12 {
 		int []arrInt = new int[arr.length];
 		sortData(arr, arrInt);
 		showNumber(arrInt);
+		
+		
 
 	}
 }

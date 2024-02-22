@@ -5,13 +5,14 @@ import java.util.StringTokenizer;
 public class Test14 {
 	public static void main(String[] args) {
 
-		String msg = "Although the world is full of suffering, it is full also of the overcoming of it.";
+		String msg = "Although the world, is full of suffering, it is full. also of the overcoming of it.";
 		StringTokenizer st1 = new StringTokenizer(msg);
 		System.out.println("단어 수 : " + st1.countTokens());
 		while (st1.hasMoreTokens()) {
 			System.out.print(st1.nextToken() + " + " );
 		}
-		StringTokenizer st11 = new StringTokenizer(msg, ",. ");
+		
+		StringTokenizer st11 = new StringTokenizer(msg, ", .");
 		System.out.println("단어 수 : " + st11.countTokens());
 		while (st11.hasMoreTokens()) {
 			System.out.print(st11.nextToken() + " + " );

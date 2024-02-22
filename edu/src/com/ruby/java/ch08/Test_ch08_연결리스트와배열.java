@@ -47,6 +47,29 @@ class LinkedList3 {
 			}
 			q.link = newNode;	// 현재 값: null 과거 값  newNode와 ㅏ연결
 		}
+		
+		// ====== 개인 연습 ======= //
+		
+		Node3 nd = new Node3(data);
+		if(first == null) {
+			first = nd;
+		}
+		else {
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
@@ -185,6 +208,7 @@ public class Test_ch08_연결리스트와배열 {
 		ll.showList(); // data 값 크기 순으로 배열하기
 		ll.insert(7);
 		ll.showList();
-
+		
+		
 	}
 }

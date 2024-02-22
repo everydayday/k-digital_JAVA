@@ -6,7 +6,7 @@ class Matrix{
 	private int r;
 	private int c;
 	
-	public Matrix(int[] array, int s, int r,int c) {
+	public Matrix(int[] array, int s, int r,int c) {	// s : start  r: row c :column
 		arr = new double[r][c];
 		this.r = r;
 		this.c = c;

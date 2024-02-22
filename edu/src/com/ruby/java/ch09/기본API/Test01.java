@@ -14,20 +14,22 @@ public class Test01 {
 		Object obj3 = new Object();
 		
 
-		System.out.println("obj1.hashCode()=" + obj1.hashCode());//출력이 정수
-		System.out.println(Integer.toHexString(obj1.hashCode()));
+		System.out.println("obj1.hashCode()=" + obj1.hashCode());  // 출력이 정수
+		System.out.println(Integer.toHexString(obj1.hashCode()));  // 	
 		System.out.println(obj2.hashCode());
 		System.out.println(obj3.hashCode());
 
 		Class c = obj1.getClass();
 		System.out.println(c.getName());
 		
+		System.out.println("*********");
 		System.out.println(obj1);//toString() 결과와 같은 이유는 자동적인 타입 캐스팅 때문임 > 정수를 hexa로 변경한 것
 		System.out.println(obj1.toString());//399 페이지 하단의 클래스 이름이 string
 		System.out.println(obj2);
 		System.out.println(obj3);
 
 		MyObject obj4 = new MyObject();
+		System.out.println("----------");
 		System.out.println(obj4);
 		MyObject obj5 = new MyObject();
 		//obj4.equals(obj5) //MyObject의 equals()가 실행됨
