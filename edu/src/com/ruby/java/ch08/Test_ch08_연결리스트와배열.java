@@ -11,11 +11,8 @@ class Node3 {
 }
 
 class LinkedList3 {
-	Node3 first; // head 역할인 듯
+	Node3 first; // head 역할
 
-	public LinkedList3() {
-		first = null;
-	}
 
 	void append(int data) {
 		/*
@@ -45,31 +42,12 @@ class LinkedList3 {
 				q = p; // 과거 Node q -> 현재 p 로 업데이트
 				p = p.link; // 현재 Node p -> 다음 노드 p로 업데이트
 			}
-			q.link = newNode;	// 현재 값: null 과거 값  newNode와 ㅏ연결
+			q.link = newNode;	// 현재 값: null 과거 값  newNode와 연결
 		}
 		
 		// ====== 개인 연습 ======= //
 		
-		Node3 nd = new Node3(data);
-		if(first == null) {
-			first = nd;
-		}
-		else {
 			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 	}
 
@@ -212,3 +190,6 @@ public class Test_ch08_연결리스트와배열 {
 		
 	}
 }
+
+
+
