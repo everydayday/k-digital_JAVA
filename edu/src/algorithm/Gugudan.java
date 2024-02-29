@@ -41,14 +41,9 @@ public class Gugudan {
 				System.out.println(" ");			
 				
 			}
-			System.out.println("=".repeat(20));
 			
-			
-			
-		}
-		
-		
-		
+			System.out.println("=".repeat(20));			
+		}		
 		
 	}
 	

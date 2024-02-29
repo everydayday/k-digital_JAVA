@@ -2,7 +2,7 @@ package com.ruby.java.ch13;
 
 
 
-class Bag<T>{
+class Bag<T>{	
 	private T thing;
 	
 	public Bag() {

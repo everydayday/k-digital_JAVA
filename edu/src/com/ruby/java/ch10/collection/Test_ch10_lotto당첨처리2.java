@@ -38,7 +38,7 @@ public class Test_ch10_lotto당첨처리2 {
 
 	public static void main(String[] args) {
 
-		lotto_generator(1000000);	// n = 로또 횟수
+		lotto_generator(10000000);	// n = 로또 횟수
 
 	}
 
