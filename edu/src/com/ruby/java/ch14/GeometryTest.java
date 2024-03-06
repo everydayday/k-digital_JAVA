@@ -34,7 +34,7 @@ class Rectangle1 extends Geometry1{
 	
 	@Override
 	double getArea() {
-		return (double) (h * w);
+		return (double) (h * w);	// 형 변환 해주어야 한다는 거 놓치지 말기
 	}
 	
 }
@@ -63,7 +63,7 @@ public class GeometryTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// Function 람다 생성
-		Function<Geometry1, Double> func = (g) ->{
+		Function<Geometry1, Double> func = (g) ->{	// 인터페이스 공통 부분 메서드 해주면 구현 클래스에서 타입캐스팅 안 해줘도 실행
 			return g.getArea();
 			
 		};

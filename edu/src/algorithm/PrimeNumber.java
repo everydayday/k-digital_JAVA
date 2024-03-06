@@ -6,7 +6,7 @@ public class PrimeNumber {
 
 	public boolean PrimeNumber(int num) { // num이 소수인지 판단
 		int i = 2;
-		while((i * i) < num) {
+		while((i * i) <= num) {
 			if(num % i == 0) return false;
 			i ++;
 		}
@@ -48,7 +48,6 @@ public class PrimeNumber {
 				answers.add(n);
 			
 		}
-		
 		return answers;		
 	}
 

@@ -7,9 +7,9 @@ public class PrimeNumberTest {
 		
 		PrimeNumber pn = new PrimeNumber();
 		
-		System.out.println(pn.PrimeNumber2(3));
+		System.out.println(pn.PrimeNumber2(2));
 		
-		System.out.println(pn.PrimeNumber3(3));
+		System.out.println(pn.PrimeNumber3(2));
 		
 
 	}

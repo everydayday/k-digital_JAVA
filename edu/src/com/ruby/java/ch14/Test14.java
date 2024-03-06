@@ -3,7 +3,7 @@ package com.ruby.java.ch14;
 import java.util.function.Function;
 
 
-class Geometry{
+class Geometry{	// 겹치지 않는 부분이 있는지라 이렇게는 잘 안 짬
 	double radius;
 	double width;
 	double height;

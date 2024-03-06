@@ -19,27 +19,27 @@ public class Baek2480_2 {
 			num[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int[]arr = howManySame(num);
+		//int[]arr = howManySame(num);
 		
 		
 		
 		
 	}
 	
-	public static int[] howManySame(int[] num) {
-		
-		
-		for(int i = 0; i < num.length; i++) {
-			for(int j = i + 1; j < num.length; j++) {
-				if(num[i] == num[j]) {
-					
-				}
-				
-				
-			}
-		}
-		
-	}
+//	public static int[] howManySame(int[] num) {
+//		
+//		
+//		for(int i = 0; i < num.length; i++) {
+//			for(int j = i + 1; j < num.length; j++) {
+//				if(num[i] == num[j]) {
+//					
+//				}
+//				
+//				
+//			}
+//		}
+//		
+//	}
 	
 	
 	
