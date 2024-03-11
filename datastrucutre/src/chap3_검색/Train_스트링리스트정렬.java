@@ -12,7 +12,16 @@ import java.util.List;
 public class Train_스트링리스트정렬 {
 
 	    public static String[] removeElement1(String[] arr, String item) {
+	    	// 배열로 바꾸고
+	    	// for loop 돌림
 	    	
+	    	// 현재 배열에서 중복 제거할려고 하면 코드가 길어진다
+	    	// 배열을 리스트 변환 > list.remove();
+	    	// 삭제된 리스트를 배열로 변환하여 리턴
+	    	
+	    	ArrayList<String> alist = new ArrayList<>(Arrays.asList(arr));
+	    	
+	    	return alist.toArray(String[]::new);
 	    	
 	    }
 	    
@@ -31,24 +40,52 @@ public class Train_스트링리스트정렬 {
 	    static void showList(String topic, List<String> list) {
 	    	System.out.println(topic + "  ");
 	    	for (String st : list) {
-	    		
+	    		System.out.print(st + "\t");
 	    	}
 
 	    }
 	    static void sortList(List<String> list) {
 	    	// 방법 1: list.sort(null);
-	    	String cities[] = new String[0]; 
+	    	//list.sort((x1, x2) -> x1.compareTo(x2));	// comparator 안 줘도 내부적으로 구현되어 있음
+	    	list.sort(null);
+	    	
+	    	ArrayList<String> lst = new ArrayList<String>(list); 	// ArrayList comparator 구현 방법?
+	    	lst.sort(null);
+	    	
 	    	// 방법 2: 리스트를 스트링 배열로 변환 >
-	    	ArrayList<String> lst = new ArrayList<String>(list); 	// 세모
-	    }
+	    	String cities[] = new String[0]; // String[0] 하는 이유? => ArrayList를 String[] 으로 만들겠다. :: 메모리 할당
+	    	
+	    }	
 	    
 	    static String[] removeDuplicateList(List<String> list) {	
-		    String cities[] = new String[0];
-		    cities = list.toArray(cities);
+	    	/*
+	    	 *  리스트를 배열로 변환 > 배열에서 중복을 찾는다
+	    	 */
+		    String cities[] = new String[0];	// 디폴트로 String 메모리 잡음
+		    cities = list.toArray(cities);		/// String[] 배열로 바꾸는 느낌인 듯(생성자로 넣어줘서)
 		    // list를 배열 cities[] 로 변환
 		    // for문으로 도시가 중복인 것을 체크 : compareTo를 사용해서 
 		    // removeElement(cities, city) 호출
 		    // arr를 list로 변경 Arrays.asList(arr) => 다시 arr로 변경
+		    
+		    int count = cities.length;
+		    for(int i =  0; i < cities.length; i ++) {
+		    	for(int j = i + 1; j < cities.length; j++ ) {
+			    	if (cities[i].compareTo(cities[j])==0) { // 배열에서 중복 검사하여 참이면
+				    	String city = cities[j];
+			    		cities = removeElement1(cities, city);	// 배열에서 중복 제거		    
+			    		j --;  // 같은 위치에서 다시 비교해야 할 수도 있어
+				    
+			    	}
+		    	
+		    	}
+		    	
+		    }
+		    
+		    
+		    
+		    
+		    
 		    return cities;
 	    }
 	    
@@ -71,6 +108,7 @@ public class Train_스트링리스트정렬 {
 		    System.out.println("중복제거::");
 		  
 		    String[] cities = removeDuplicateList(list);
+		    
 	        ArrayList<String> lst = new ArrayList<>(Arrays.asList(cities));
 		    showList("중복제거후", lst);
 		}

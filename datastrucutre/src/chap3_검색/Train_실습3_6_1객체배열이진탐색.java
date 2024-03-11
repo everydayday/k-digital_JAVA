@@ -21,6 +21,12 @@ class PhyscData2 implements Comparable<PhyscData2>{
 	}
 	@Override
 	public int compareTo(PhyscData2 p) {
+		if (vision > p.vision)
+			return 1;
+		else if(vision < p.vision)
+			return -1;
+		else return 0;
+		
 		
 	}
 	public int equals(PhyscData2 p) {
@@ -53,12 +59,14 @@ public class Train_실습3_6_1객체배열이진탐색 {
 				new PhyscData2("길동", 167, 0.5),
 		};
 		Arrays.binarySearch(data, key, new Comp()); // ???
+		if (data[0].compareTo(data[1])>0)
+			System.out.println();
 		showData("정렬전", data);
 		sortData(data);
 		showData("정렬후", data);
 		reverse(data);
 		showData("역순 재배치후", data);
-		Arrays.sort(data);//사용된다 그 이유는?
+		Arrays.sort(data);//사용된다 그 이유는? => 내가 만들어 놓은 compareTo를 사용해서 비교한다
 		showData("Arrays.sort() 정렬후", data);
 		
 		PhyscData2 key = new PhyscData2("길동", 167, 0.2);
@@ -75,7 +83,7 @@ public class Train_실습3_6_1객체배열이진탐색 {
 		/*
 		 * 교재 115 Arrays.binarySearch에 의한 검색
 		 */
-		resultIndex = Arrays.binarySearch(data, key);//comparable를 사용
+		resultIndex = Arrays.binarySearch(data, key);//comparable를 사용 => 내가만든 comparable 사용한다.
 		System.out.println("\nArrays.binarySearch(<이동,167,0.6>): result = " + resultIndex);
 	}
 	

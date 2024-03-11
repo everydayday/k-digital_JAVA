@@ -12,6 +12,14 @@ class PhyscData3 {
 }
 class HeightOrderComparator2 implements Comparator<PhyscData3>{
 
+	@Override
+	public int compare(PhyscData3 o1, PhyscData3 o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public boolean equals()
+
 }
 public class Train실습3_8객체비교연산자 {	
 	static final Comparator<PhyscData3> HEIGHT_ORDER = new HeightOrderComparator2();

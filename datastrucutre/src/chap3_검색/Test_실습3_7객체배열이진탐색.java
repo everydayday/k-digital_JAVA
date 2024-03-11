@@ -35,6 +35,7 @@ class Fruit4 {
 class FruitNameComparator2 implements Comparator<Fruit4>{
 	public int compare(Fruit4 f1, Fruit4 f2) {
 		return (f1.expire.compareTo(f2.expire) < 0) ? -1 : 1;  // 앞에 오면 음수, 뒤에 오면 양수 반환
+		// 함수의 body라고 하고 이것이 람다식의 본체다
 
 	}
 public class Test_실습3_7객체배열이진탐색 {
@@ -94,6 +95,7 @@ public class Test_실습3_7객체배열이진탐색 {
 		Arrays.sort(arr, cc_price2); // 람다식으로 만들어진 객체를 사용
 		showData("람다식 변수 cc_price2을 사용한 Arrays.sort(arr, cc) 정렬 후", arr);
 		
+		/// comparator 비교해야하는데 뒤에 body 부분이 오니 comparator 구현한 body 겠구나
 		Arrays.sort(arr, (a, b) -> a.getPrice() - b.getPrice()); // Fruit4에 compareTo()가 있어도 람다식 우선 적용
 		showData("람다식: (a, b) -> a.getPrice() - b.getPrice()을 사용한 Arrays.sort(arr, cc) 정렬 후", arr);
 
