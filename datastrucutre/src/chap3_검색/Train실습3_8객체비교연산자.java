@@ -8,6 +8,14 @@ class PhyscData3 {
 	String name;
 	int height;
 	double vision;
+	public PhyscData3(String name, int height, double vision) {
+		super();
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
+	
+	
 
 }
 class HeightOrderComparator2 implements Comparator<PhyscData3>{

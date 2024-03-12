@@ -14,39 +14,90 @@ class PhyscData2 implements Comparable<PhyscData2>{
 	String name;
 	int height;
 	double vision;
-
+		
+	public PhyscData2(String name, int height, double vision) {
+		super();
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
 	@Override
 	public String toString() {
-		
+		return "PhyscData2 [name=" + name + ", height=" + height + ", vision=" + vision + "]";
 	}
 	@Override
 	public int compareTo(PhyscData2 p) {
+		
+		
+		
 		if (vision > p.vision)
 			return 1;
 		else if(vision < p.vision)
 			return -1;
 		else return 0;
+			
+		
 		
 		
 	}
-	public int equals(PhyscData2 p) {
-		
+	public int equals(PhyscData2 p) {	// name으로 비교해야지
+		if(name.compareTo(p.name) == 0) return 0;
+		else return -1;
 	}
 }
 public class Train_실습3_6_1객체배열이진탐색 {
 	
-	public static void showData(PhyscData2[] arr) {
-		// 확장형 for문으로 할 시 인덱스가 없어서 swap() 처리 안 됨
-		Arrays.binarySearch(null, null, null)
+	public static void swap(PhyscData2[] arr,int i, int j) {
+		PhyscData2 temp = arr[i]; arr[i] = arr[j] ; arr[j] = temp; 
+	}
+	
+	public static void showData(String str,PhyscData2[] arr) {
+		// 확장형 for문으로 할 시 인덱스가 없어서 swap() 처리 안 됨		
+		System.out.println(str);
+		for(int i = 0; i < arr.length; i++) {
+			System.out.println(arr[i].toString());
+		}
+	}
+	
+	public static void sortData(PhyscData2[] arr) {
+		
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = i + 1; j < arr.length; j++) {
 				if (arr[i].compareTo(arr[j]) > 0) {
-					swap(arr[i], arr[j]);
+					swap(arr, i, j);
 				}
 			}
 		}
 	}
+	
+	public static void reverse(PhyscData2[] arr) {
+		for(int i = 0 ; i < arr.length / 2; i ++) {
+			swap(arr, i, arr.length - 1 - i);
+		}
+	}
+	
+	public static int linearSearch(PhyscData2[] data, PhyscData2 key) {
+		int i = 0;
+		while(i <= data.length) {
+			if(data[i].compareTo(key) == 0) return 0;
+			i ++;
+		}
+		return -1;
+	}
 
+	
+	public static int binarySearch(PhyscData2[] data, PhyscData2 key) {
+		int pl = 0; int pr = data.length -1;
+		while(pl <= pr) {
+			int mid = (pl + pr) / 2;
+			if(data[mid].compareTo(key) == 0) return mid;
+			if(data[mid].compareTo(key) < 0) pl = mid + 1;
+			if(data[mid].compareTo(key) > 0 ) pr = mid - 1;
+			
+			
+		}
+		return -1;
+	}
 
 	public static void main(String[] args) {
 		PhyscData2[] data = {
@@ -58,7 +109,7 @@ public class Train_실습3_6_1객체배열이진탐색 {
 				new PhyscData2("이동", 167, 0.2),
 				new PhyscData2("길동", 167, 0.5),
 		};
-		Arrays.binarySearch(data, key, new Comp()); // ???
+		//Arrays.binarySearch(data, key, new Comp()); // ???
 		if (data[0].compareTo(data[1])>0)
 			System.out.println();
 		showData("정렬전", data);

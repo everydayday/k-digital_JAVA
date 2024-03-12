@@ -20,12 +20,13 @@ public class Train_스트링리스트정렬 {
 	    	// 삭제된 리스트를 배열로 변환하여 리턴
 	    	
 	    	ArrayList<String> alist = new ArrayList<>(Arrays.asList(arr));
+	    	alist.remove(item);
 	    	
 	    	return alist.toArray(String[]::new);
 	    	
 	    }
 	    
-	    static void getList(List<String> list) {
+	    static void getList(List<String> list) {	// 자료형은 list 이나 가리키는 객체는 arraylist이다.
 			list.add("서울");	list.add("북경");
 			list.add("상해");	list.add("서울");
 			list.add("도쿄");	list.add("뉴욕");
@@ -47,13 +48,43 @@ public class Train_스트링리스트정렬 {
 	    static void sortList(List<String> list) {
 	    	// 방법 1: list.sort(null);
 	    	//list.sort((x1, x2) -> x1.compareTo(x2));	// comparator 안 줘도 내부적으로 구현되어 있음
-	    	list.sort(null);
 	    	
-	    	ArrayList<String> lst = new ArrayList<String>(list); 	// ArrayList comparator 구현 방법?
-	    	lst.sort(null);
+	    	//list.sort(null);
+	    	
+	    	// 할 필요 없다. => 이미 list 자료형으로 받으므로
+//	    	ArrayList<String> lst = new ArrayList<String>(list); 	// ArrayList comparator 구현 방법?
+//	    	lst.sort(null);
 	    	
 	    	// 방법 2: 리스트를 스트링 배열로 변환 >
-	    	String cities[] = new String[0]; // String[0] 하는 이유? => ArrayList를 String[] 으로 만들겠다. :: 메모리 할당
+	    	String cities[] = new String[0]; // String[0] 하는 이유? => List를 String[] 으로 만들겠다. :: 메모리 할당
+	    	cities = list.toArray(cities);	// 크기는 상관 없나봐.... 그냥 객체 할당만 하면 되는 듯..?
+	    	
+	    	int count = cities.length;
+	    	for(int i = 0 ; i < count; i++) {
+	    		for(int j = i+1; j < count; j++) {
+	    			if(cities[i].compareTo(cities[j]) > 0) {
+	    				// swap
+	    				String temp = cities[i];
+	    				cities[i] = cities[j];
+	    				cities[j] = temp;
+	    			}
+	    		}
+	    	}
+	
+	    	
+	    	
+	    	//list = new ArrayList<>(Arrays.asList(cities));	// list 는 매개변수 일 뿐일. 원본이 아니다.  왜 = 대입하면 안 될까.
+	    	// 원본 바꾸는 방법 1
+	    	/*
+	    	list.clear();
+	    	list.addAll((Arrays.asList(cities)));
+	    	*/
+	    	// 원본 바꾸는 방법 2
+	    	for(int i = 0; i < list.size(); i++) {
+	    		list.set(i,cities[i]);
+	    	}
+	    	
+	    	System.out.println("list:"+ list);
 	    	
 	    }	
 	    
@@ -63,6 +94,10 @@ public class Train_스트링리스트정렬 {
 	    	 */
 		    String cities[] = new String[0];	// 디폴트로 String 메모리 잡음
 		    cities = list.toArray(cities);		/// String[] 배열로 바꾸는 느낌인 듯(생성자로 넣어줘서)
+		    
+		    // 1. list를 배열로 바꾸고
+		    // 2. 배열의 사이즈를 체크해서 사이즈 부족 시, 새롭게 공간 할당 함(list 사이즈로)
+		    
 		    // list를 배열 cities[] 로 변환
 		    // for문으로 도시가 중복인 것을 체크 : compareTo를 사용해서 
 		    // removeElement(cities, city) 호출
