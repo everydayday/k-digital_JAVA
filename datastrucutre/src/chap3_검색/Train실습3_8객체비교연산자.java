@@ -18,9 +18,6 @@ class PhyscData3 {
 	public String toString() {
 		return "PhyscData3 [name=" + name + ", height=" + height + ", vision=" + vision + "]";
 	}
-	
-	
-
 }
 class HeightOrderComparator2 implements Comparator<PhyscData3>{
 

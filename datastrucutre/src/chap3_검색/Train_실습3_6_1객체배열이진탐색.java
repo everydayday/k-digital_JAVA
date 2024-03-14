@@ -33,10 +33,7 @@ class PhyscData2 implements Comparable<PhyscData2>{
 			return 1;
 		else if(vision < p.vision)
 			return -1;
-		else return 0;
-			
-		
-		
+		else return 0;		
 		
 	}
 	public int equals(PhyscData2 p) {	// name으로 비교해야지
@@ -48,6 +45,8 @@ public class Train_실습3_6_1객체배열이진탐색 {
 	
 	public static void swap(PhyscData2[] arr,int i, int j) {
 		PhyscData2 temp = arr[i]; arr[i] = arr[j] ; arr[j] = temp; 
+		int[] arr1 = new int[4];
+		
 	}
 	
 	public static void showData(String str,PhyscData2[] arr) {
