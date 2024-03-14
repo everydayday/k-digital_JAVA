@@ -45,7 +45,7 @@ public class Train_스트링리스트정렬 {
 	    	}
 
 	    }
-	    static void sortList(List<String> list) {
+	    static List<String> sortList(List<String> list) {
 	    	// 방법 1: list.sort(null);
 	    	//list.sort((x1, x2) -> x1.compareTo(x2));	// comparator 안 줘도 내부적으로 구현되어 있음
 	    	
@@ -69,22 +69,21 @@ public class Train_스트링리스트정렬 {
 	    				cities[j] = temp;
 	    			}
 	    		}
-	    	}
-	
+	    	}	    	
 	    	
-	    	
-	    	//list = new ArrayList<>(Arrays.asList(cities));	// list 는 매개변수 일 뿐일. 원본이 아니다.  왜 = 대입하면 안 될까.
+	    	list = new ArrayList<>(Arrays.asList(cities));	// list 는 매개변수 일 뿐일. 원본이 아니다.  왜 = 대입하면 안 될까.
 	    	// 원본 바꾸는 방법 1
 	    	/*
 	    	list.clear();
 	    	list.addAll((Arrays.asList(cities)));
 	    	*/
 	    	// 원본 바꾸는 방법 2
-	    	for(int i = 0; i < list.size(); i++) {
-	    		list.set(i,cities[i]);
-	    	}
+//	    	for(int i = 0; i < list.size(); i++) {
+//	    		list.set(i,cities[i]);
+//	    	}
 	    	
 	    	System.out.println("list:"+ list);
+	    	return list;
 	    	
 	    }	
 	    
@@ -97,7 +96,6 @@ public class Train_스트링리스트정렬 {
 		    
 		    // 1. list를 배열로 바꾸고
 		    // 2. 배열의 사이즈를 체크해서 사이즈 부족 시, 새롭게 공간 할당 함(list 사이즈로)
-		    
 		    // list를 배열 cities[] 로 변환
 		    // for문으로 도시가 중복인 것을 체크 : compareTo를 사용해서 
 		    // removeElement(cities, city) 호출
@@ -135,9 +133,9 @@ public class Train_스트링리스트정렬 {
 //		    Collections.sort(list);
 
 //배열의 정렬
-			sortList(list);
+			List<String> l = sortList(list);
 		    System.out.println();
-		    showList("정렬후", list);
+		    showList("정렬후", l);
 // 배열에서 중복제거
 		    System.out.println();
 		    System.out.println("중복제거::");

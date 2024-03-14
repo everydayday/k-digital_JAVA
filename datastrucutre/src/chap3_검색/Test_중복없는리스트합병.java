@@ -1,7 +1,20 @@
 
 package chap3_검색;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 //중복이 없는 리스트를 merge하는 버젼
+
 
 
 public class Test_중복없는리스트합병 {
@@ -37,8 +50,25 @@ public class Test_중복없는리스트합병 {
 		ArrayList<String> list3 = new ArrayList<>();
 		// ------- ArrayList의 get()을 사용한 merge
 
-					
+		return list3;
 	}
+	
+	static void showData(String str,String[] sarray) {
+		System.out.println(str);
+		for(int i = 0 ; i < sarray.length; i++) {
+			System.out.print(sarray[i] + "\t");
+		}
+		System.out.println();
+		
+	}
+	
+	static void trimSpace(String[] sarray) {
+			
+	}	
+	static void makeList(String[] sarray,ArrayList<String> list1) {
+		
+	}
+	
 	public static void main(String[] args) {
 		try {
 			/*

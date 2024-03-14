@@ -26,8 +26,7 @@ class PhyscData2 implements Comparable<PhyscData2>{
 		return "PhyscData2 [name=" + name + ", height=" + height + ", vision=" + vision + "]";
 	}
 	@Override
-	public int compareTo(PhyscData2 p) {
-		
+	public int compareTo(PhyscData2 p) {		
 		
 		
 		if (vision > p.vision)

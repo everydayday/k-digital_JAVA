@@ -14,6 +14,10 @@ class PhyscData3 {
 		this.height = height;
 		this.vision = vision;
 	}
+	@Override
+	public String toString() {
+		return "PhyscData3 [name=" + name + ", height=" + height + ", vision=" + vision + "]";
+	}
 	
 	
 
@@ -22,16 +26,36 @@ class HeightOrderComparator2 implements Comparator<PhyscData3>{
 
 	@Override
 	public int compare(PhyscData3 o1, PhyscData3 o2) {
-		// TODO Auto-generated method stub
-		return 0;
+		// name으로 비교
+		if(o1.name.compareTo(o2.name) < 0) return -1;
+		else if(o1.name.compareTo(o2.name) > 0) return 1;
+		else return 0;
+		
+		
+		
 	}
 	
-	public boolean equals()
+	public boolean equals(PhyscData3 o1, PhyscData3 o2) {
+		// 모든 것 같다면
+		if(o1.name.compareTo(o2.name) == 0 && o1.height == o2.height && o1.vision == o2.vision)
+		return true;
+		return false;
+	}
+	
+	
 
 }
 public class Train실습3_8객체비교연산자 {	
 	static final Comparator<PhyscData3> HEIGHT_ORDER = new HeightOrderComparator2();
 
+	public static void showData(String topic, PhyscData3[] data) {
+		System.out.println(topic);
+		for(PhyscData3 p : data) {
+			System.out.println(p.toString());
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		PhyscData3[] data = {
 				new PhyscData3("홍길동", 162, 0.3),

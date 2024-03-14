@@ -76,6 +76,7 @@ public class Train_실습3_4정수배열이진탐색 {
 		ArrayList<Integer> alist = new ArrayList<>(Arrays.asList(integer_data));
 		//alist.sort(new Comparator<int>() = (x1, x2) ->  x1 < x2 ? 1 : -1);
 		alist.sort((x1, x2) -> -(x1.compareTo(x2)));
+		//alist.sort((x1, x2) -> x2.compareTo(x1));
 		//alist.sort(null);
 		
 //		alist.get(0).
