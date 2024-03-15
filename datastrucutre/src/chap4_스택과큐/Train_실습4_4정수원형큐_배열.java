@@ -136,10 +136,11 @@ class IntQueue3 {
 		int length = size();
 		for (int i = 0; i < length; i++) {
 			int idx = (i + front) % capacity;
-			System.out.print("idx is : "+ idx + " que[i]:" + que[i] + "\t");
+			//System.out.print("idx: "+ idx + "\t que[idx]:" + que[idx] + "\t");
+			System.out.print(que[idx] + "\t");
 		}
 		System.out.println();	
-		System.out.println("front :" + front);
+		
 	}
 
 }
@@ -158,7 +159,7 @@ public class Train_실습4_4정수원형큐_배열 {
 			switch (menu) {
 			case 1: // 인큐
 				rndx = random.nextInt(20);
-				System.out.print("입력데이터: (" + rndx +")");
+				System.out.println("입력데이터: (" + rndx +")");
 				try {
 					oq.enque(rndx);
 				} catch(IntQueue3.OverflowIntQueue3Exception e) {
