@@ -1,0 +1,127 @@
+[lang="de"], .password{
+    font-style: italic;
+}
+table{
+    /* position: sticky; */
+    bottom: 0px
+}
+
+.first-row > td{
+    color:red;
+}
+
+a[href]:visited{
+    color:green;
+}
+
+a[href]:link{
+    color:orange;
+}
+
+a[href]:hover{
+    color:purple;
+}
+
+a[href]:active{
+    color:black;
+}
+
+tr:last-child{
+    color:aqua;
+}
+
+div> p:first-child{
+    color:brown;
+}
+
+div> p:last-child{
+    color: aqua;
+}
+
+.parent{
+    font-size:16px;
+}
+.div_class{
+    font-size:32px;
+    margin:50px;
+}
+
+.child{
+    font-size: 50%;
+}
+
+.square{
+    border:1px solid white;
+    background-image: url('images/facebook.png');
+
+    background-size: auto;
+}
+
+.box{
+    width: 600px;
+    height: 250px;
+}
+
+.red-box{
+    background-color: red;
+}
+
+.red-box:hover{
+    transition-duration: 10s;
+
+}
+
+
+.green-box{
+    background-color: green;   
+    transition-property: background-color;
+    transition-duration: 5s;
+    
+}
+
+@keyframes bgchange {
+    0%{background-color: white;}
+    50%{background-color: aqua;}
+    100%{background-color: red; }
+}
+
+.blue-box{
+    background-color: blue;
+    clear:left;
+    animation-name: bgchange;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+.bottom_image{
+    float:left;
+
+}
+
+.rotate{
+    position:absolute;
+    left : 200px;
+    
+    background-color: tomato;
+    width: 300px;
+    height: 300px;
+
+    margin-bottom: 100px;
+    background-image: url('images/hero.jpg');
+    background-repeat: round;
+}
+
+@keyframes rotating {
+    0%{background-color: white;}
+    50%{background-color: aqua;}
+    100%{background-color: red; }
+}
+
+.rotate:hover{
+    transform:rotate(3600000000deg);
+    transition-duration: 100s;
+    background-color: blue;
+    
+}
+/* 
+278 */

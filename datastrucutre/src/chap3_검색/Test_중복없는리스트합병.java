@@ -25,19 +25,41 @@ public class Test_중복없는리스트합병 {
 //file > string split() > 배열 > ArrayList > sort > iterator 사용하여 merge > 중복 제거 > string 배열 > file에 저장
 
 
-	/*
+	
 	static int binSearch(String[] s, int n, String key) {
 		//자료구조 책 페이지 115 코드 사용한다.
+		int pl = 0;
+		int pr = s.length - 1;
+		
+				
+		while(pl <= pr) {
+			int mid = (pl + pr) / 2;
+			if(s[mid].compareTo(key) == 0) return mid;
+			if(s[mid].compareTo(key) > 0) pr = mid -1;
+			if(s[mid].compareTo(key) < 0) pl = mid + 1;			
+		}
+				
+		return -1;
+		
 	}
-	*/
+	
+	@SuppressWarnings("unchecked")
 	static ArrayList<String> removeDuplicate(ArrayList<String> al) {
 		/*
 		 * 구현할 부분 : 리스트에서 중복을 제거한다 - 배열로 변환하여 구현하는 것이 아님 
 		 * 리스트를 정렬한후에 이 함수가 호출된다
 		*/
 		
-		ArrayList<String> list1 = new ArrayList<>();
-
+		ArrayList<String> list1 = (ArrayList<String>)al.clone();
+		
+		for(int i = 0 ; i < list1.size() ; i++) {
+			for(int j = i +1 ; )
+			
+			
+		}
+		
+		
+		
 
 		return list1;
 	}
@@ -62,11 +84,22 @@ public class Test_중복없는리스트합병 {
 		
 	}
 	
+	static void showList(String str,List<String> list1) {
+		System.out.println(str);
+		for(String lst : list1) {	// iterator 반환해서 사용해야하지 않나?
+			System.out.println(lst + "\t");
+		}
+		System.out.println();
+	}
+	
 	static void trimSpace(String[] sarray) {
+		for(int i = 0 ; i < sarray.length; i++) {
+			sarray[i] = sarray[i].strip();
+		}
 			
 	}	
 	static void makeList(String[] sarray,ArrayList<String> list1) {
-		
+		list1.addAll(Arrays.asList(sarray));		
 	}
 	
 	public static void main(String[] args) {
@@ -96,7 +129,7 @@ public class Test_중복없는리스트합병 {
 			showData("스트링 배열 sarray1", sarray1);
 			showData("스트링 배열 sarray2", sarray2);
 
-			trimSpace(sarray1);
+			trimSpace(sarray1);	// 어떤 의미?
 			trimSpace(sarray2);
 
 			showData("trimSpace() 실행후 :스트링 배열 sarray1", sarray1);
@@ -116,7 +149,7 @@ public class Test_중복없는리스트합병 {
 			Collections.sort(list1);
 			showList("정렬후 리스트1: ", list1);
 
-			//Arrays.sort(list2, null);//에러 발생 확인하고 이유는?
+			//Arrays.sort(list2, null);//에러 발생 확인하고 이유는? .. comparator 제공 안 되서?
 			Collections.sort(list2);
 			showList("정렬후 리스트2: ", list2);	
 	
