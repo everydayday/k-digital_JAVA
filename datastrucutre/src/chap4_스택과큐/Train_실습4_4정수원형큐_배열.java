@@ -58,7 +58,7 @@ class IntQueue3 {
 		if(rear == front) isfull = true; //비어서 같아졌는지 가득 차서 같아졌는지 확인하기 위해
 		System.out.print("All que :" );
 		for(int i : que) System.out.print(i + "\t");
-		return x;		
+		return x;
 
 	}
 

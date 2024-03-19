@@ -45,21 +45,35 @@ class Point5 {
 	}
 }
 
+// ========================= //
 
 class CircularQueue {
 	static int QUEUE_SIZE = 0;
 	Point5[] que;//배열로 객체원형 큐 구현
 	int front, rear;
-	static boolean isEmptyTag;
+	static boolean isfull;
 	//--- 실행시 예외: 큐가 비어있음 ---//
+	public class EmptyQueueException extends Exception{
+		private static final long serialVersionUID = 1L;
+		public EmptyQueueException(String message) {
+			super(message);	/// Exception의 생성자 불러서 실행한다
+		}
+	}
 
 
 	//--- 실행시 예외: 큐가 가득 찼음 ---//
+	public class OverflowQueueException extends RuntimeException {
+		private static final long serialVersionUID = 1L;
+		public OverflowQueueException(String message) {
+			super(message);
+		}
+	} 
+	
 
 	public CircularQueue(int count) {
 		front = rear = 0;
 		que = new Point5[count];
-		isEmptyTag = true;
+		isfull = false;
 		//다음 2개 field 가 필요한지 확인 필요 
 		QUEUE_SIZE = count;
 	}
@@ -67,9 +81,12 @@ class CircularQueue {
 		if(isFull()) {
 			throw new OverflowQueueException("push: circular queue overflow"); 
 		}
+		que[rear] = it;
 		rear ++;
+		if(rear >= QUEUE_SIZE) rear = 0;
 		if(front == rear)
-			isEmptyTag = false;
+			isfull = true;
+		
 
 	}
 
@@ -77,17 +94,22 @@ class CircularQueue {
 		if(isEmpty()) {
 			throw new EmptyQueueException("pop: circular queue overflow"); 
 		}
+		Point5 temp = que[front];
 		front++;
+		if(front >= QUEUE_SIZE) front = 0;
 		if (front == rear)
-			isEmptyTag = true;
-
+			isfull = false;
+		
+		return temp;
 
 	}
 
 	 void clear() throws EmptyQueueException{
 		if(isEmpty()) {
 				throw new EmptyQueueException("enque: circular queue overflow"); 
-		}		 
+		}	
+		front = rear = 0;
+		isfull = false;
 
 	}
 
@@ -98,20 +120,23 @@ class CircularQueue {
 
 	//--- 큐에 쌓여 있는 데이터 개수를 반환 ---//
 		public int size() {//front, rear를 사용하여 갯수를 size로 계산
-			int queueSize = -1;
-
-			return queueSize;
+			int length;
+			if(isEmpty()) return 0;
+			if(front < rear) length = rear - front;
+			else length = QUEUE_SIZE - (front - rear);
+			return length;
 		}
 		//--- 원형 큐가 비어있는가? --- 수정 필요//
 		public boolean isEmpty() {
-			if(front == rear && !isEmptyTag)
+			if(front == rear && !isfull)
 				return true;
-			else false;
+			else return false;
 
 		}
 
 	//--- 원형 큐가 가득 찼는가? --- 수정 필요//
 		public boolean isFull() {
+			return front == rear && isfull;
 	
 		}
 
@@ -119,13 +144,19 @@ class CircularQueue {
 			if (isEmpty())
 					throw new EmptyQueueException("dump: queue empty");
 			else {
-
+				int length = size();
+				for (int i = 0; i < length; i++) {
+					int idx = (i + front) % QUEUE_SIZE;
+					//System.out.print("idx: "+ idx + "\t que[idx]:" + que[idx] + "\t");
+					System.out.print(que[idx] + "\t");
+				
+				}
 			}
 		}
 		public Point5 peek() throws EmptyQueueException {
 			if (isEmpty())
 				throw new EmptyQueueException("peek: queue empty"); // 큐가 비어있음
-
+			return que[front];
 		}
 }
 
@@ -180,10 +211,22 @@ public static void main(String[] args) {
 			}
 			break;
 		case 4: // 덤프
-
+			try {
+				oq.dump();
+			}catch(CircularQueue.EmptyQueueException e){
+				System.out.println("dump가 비어있습니다." + e.getMessage());
+				e.printStackTrace();
+			}
 			break;
 		case 5: //clear
-			
+			try {
+				oq.clear();
+			}catch(CircularQueue.EmptyQueueException e) {
+				System.out.println("clear가 비어있습니다." + e.getMessage());
+				e.printStackTrace();
+			}
+			break;
+		default:
 			break;
 	}
 	}

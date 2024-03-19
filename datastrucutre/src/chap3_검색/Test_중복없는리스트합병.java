@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 //중복이 없는 리스트를 merge하는 버젼
@@ -50,18 +51,20 @@ public class Test_중복없는리스트합병 {
 		 * 리스트를 정렬한후에 이 함수가 호출된다
 		*/
 		
-		ArrayList<String> list1 = (ArrayList<String>)al.clone();
+		ArrayList<String> list1 = new ArrayList<String>();	// 반환 할 복사본
 		
-		for(int i = 0 ; i < list1.size() ; i++) {
-			for(int j = i +1 ; )
-			
-			
+		for(int i = 0 ; i < al.size() ; i++) {
+			String str = al.get(i);
+			for(int j = i +1 ; j < al.size(); j++) {
+				if(al.get(i).compareTo(al.get(j)) == 0) {
+					al.remove(j);
+					j --;
+				}
+				
+			}			
 		}
-		
-		
-		
 
-		return list1;
+		return al;	// remove해서 원본 그대로 줘도 괜찮을 듯
 	}
 
 
@@ -71,6 +74,20 @@ public class Test_중복없는리스트합병 {
 		 */
 		ArrayList<String> list3 = new ArrayList<>();
 		// ------- ArrayList의 get()을 사용한 merge
+		int i = 0; int j = 0;	// i : list1 j : list2
+		while(i < list1.size() || j < list2.size()) {
+			if(list1.get(i).compareTo(list2.get(j)) < 0) {
+				list3.add(list1.get(i));
+				i ++;
+			}
+			else if(list1.get(i).compareTo(list2.get(j)) > 0) {
+				list3.add(list2.get(j));
+				j++;
+			}else {	// 둘 다 같은 경우 // 하나만 넣기
+				list3.add(list1.get(i));
+				i++; j++;
+			}
+		}
 
 		return list3;
 	}
@@ -78,7 +95,7 @@ public class Test_중복없는리스트합병 {
 	static void showData(String str,String[] sarray) {
 		System.out.println(str);
 		for(int i = 0 ; i < sarray.length; i++) {
-			System.out.print(sarray[i] + "\t");
+			System.out.print(sarray[i] + "|");
 		}
 		System.out.println();
 		
@@ -86,15 +103,19 @@ public class Test_중복없는리스트합병 {
 	
 	static void showList(String str,List<String> list1) {
 		System.out.println(str);
-		for(String lst : list1) {	// iterator 반환해서 사용해야하지 않나?
-			System.out.println(lst + "\t");
+//		Iterator<String> iter = list1.iterator();
+//		while(iter.hasNext()) {
+//			System.out.print(iter.next() + "|");
+//		}
+		for(String st : list1) {
+			System.out.print(st + "|");
 		}
 		System.out.println();
 	}
 	
 	static void trimSpace(String[] sarray) {
 		for(int i = 0 ; i < sarray.length; i++) {
-			sarray[i] = sarray[i].strip();
+			sarray[i] = sarray[i].trim();
 		}
 			
 	}	
@@ -124,8 +145,10 @@ public class Test_중복없는리스트합병 {
 			String s2 = new String(bytes2);
 			System.out.println("입력 스트링: s1 = " + s1);
 			System.out.println("입력 스트링: s2 = " + s2);
-			String[] sarray1 = s1.split("[,\\s]+\r\n");// [,\\s]+\r\n은 쉼표나 공백이 하나 이상 나오고 이어서 캐리지 리턴과 개행 문자가 있는 패턴
-			String[] sarray2 = s2.split("[,\\s]+\r\n");//file에서 enter키는 \r\n으로 해야 분리됨
+//			String[] sarray1 = s1.split("[,\\r\n]+");// [,\\s]+\r\n은 쉼표나 공백이 하나 이상 나오고 이어서 캐리지 리턴과 개행 문자가 있는 패턴
+//			String[] sarray2 = s2.split("[,\\r\n]+");//file에서 enter키는 \r\n으로 해야 분리됨
+			String[] sarray1 = s1.split("[,\s\r\n]+");// [,\\s]+\r\n은 쉼표나 공백이 하나 이상 나오고 이어서 캐리지 리턴과 개행 문자가 있는 패턴
+			String[] sarray2 = s2.split("[,\s\r\n]+");//file에서 enter키는 \r\n으로 해야 분리됨
 			showData("스트링 배열 sarray1", sarray1);
 			showData("스트링 배열 sarray2", sarray2);
 
