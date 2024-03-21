@@ -18,8 +18,8 @@ class Items3 {
 }
 //===== Class : Offsets3 =====
 class Offsets3 {
-	int a;
-	int b;
+	public int a;
+	public int b;
 	public Offsets3(int a, int b) {
 		this.a = a; this.b = b;
 	}
@@ -136,14 +136,24 @@ class Offsets3 {
 			mark[1][1] = 1;
 			StackList st = new StackList(50);
 			Items3 temp = new Items3(0, 0, 0); //N :: 0
-			temp.x = 1;
-			temp.y = 1;
+			
+			temp.x = 1;	
+			temp.y = 1;	
 			temp.dir = 2;//E:: 2 
-			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시   ?
-			st.push(temp);
 
+
+			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시   
+			st.push(temp);
+			
+			boolean isflag = false;
+			
+			
 			while (!st.isEmpty()) // stack not empty
 			{
+				
+				System.out.println(st.size());
+				
+				if(isflag) break;
 				// 현재 위치
 				Items3 tmp = st.pop(); // unstack
 				int i = tmp.x;
@@ -151,39 +161,78 @@ class Offsets3 {
 				int d = tmp.dir;
 				mark[i][j] = 1;//backtracking 궤적은 1로 표시
 				
+				System.out.println("i : " + i);
+				System.out.println("j : " + j);
+				System.out.println("d : " + d);
+				System.out.println("stack x :" + st.peek().x);
+				System.out.println("stack y :" + st.peek().y);
+				// peek 및 pop 수정
 				while (d < 8) // moves forward
 				{
 					// 다음 위치 
 					int g = i + moves[d].a;
-					int h = j + moves[d].b;
+					int h = j + moves[d].b;					
 					
+					System.out.println("g: " + g);
+					System.out.println("h: " + h);
 					// 원하는 지점에 도착
-					if ((g == ix) && (h == iy)) { // reached exit
-						temp.x = i;				  // output path
-						temp.y = j;
-						temp.dir = tmp.dir;
-						mark[temp.x][temp.y] = 1;
-						st.push(temp);	 
-					}
-					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
-						i = g; j = h;
-						mark[][]
+					if ((g == ix) && (h == iy)) { // reached exit // output path							
+						mark[g][h] = 2;	
+						System.out.println("wanted path");
+						isflag = true;
+						break;
+					}					
+					
+//					if((maze[g][h] == 0) && (mark[g][h] == 2)) {	// backtracking : 한번 갔던 경로라면
+//						i = g; j = h; 
+//						temp.x = g;	
+//						temp.y = h;	
+//						d = temp.dir;
+//						mark[temp.x][temp.y] = 1;//backtracking 궤적은 1로 표시   
+//						st.push(temp);
+//						
+//						// 초기화
+//						d ++;
+//					}
 
-					} else {
+
+					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position => 갈 수 있고 한 번도 안 가본 곳
+						
+						// 현재 좌표, 방향 stack에 넣어주기
+						temp.dir = d;
+						st.push(temp);
+						
+						// 업데이트
+						i = g; j = h; 
+						temp.x = g;	
+						temp.y = h;	
+						
+						mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시   
+						
+						
+						// 초기화
+						d = 0;
+						
+
+					} else {						
 						d++;
 					}
 
 				}
 				
 			}
+			
 			System.out.println("no path in maze ");
 		}
 		
 		
 		static void showMatrix(int[][]d, int row, int col) {
+			for(int i = 0; i <= col+3; i++) System.out.print(i + "  ");
+			System.out.println();
+			System.out.println("=".repeat(50));
 			for (int i = 0; i <= row; i++) {
 				for (int j = 0; j <= col; j++) {
-					System.out.print(d[i][j] + " ");
+					System.out.print(d[i][j] + "  ");
 
 				}
 				System.out.println();
@@ -224,7 +273,7 @@ class Offsets3 {
 			//d = d + 1;//java는 지원안됨
 			for (int i = 0; i < 14; i++) {
 				for (int j = 0; j < 17; j++) {
-					if(i == 0 || j == 0 || i == 13 || j == 13) maze[i][j] = 1;
+					if(i == 0 || j == 0 || i == 13 || j == 16) maze[i][j] = 1;
 					else maze[i][j] = input[i-1][j-1];
 					// input[][]을 maze[][]로 변환
 				}
