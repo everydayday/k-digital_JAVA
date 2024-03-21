@@ -33,12 +33,16 @@ class Offsets3 {
 
 	// --- 실행시 예외 : 스택이 비어있음 ---//
 	public class EmptyIntStackException extends RuntimeException {
+		private static final long serialVersionUID = 1L;
+
 		public EmptyIntStackException() {
 		}
 	}
 
 	// --- 실행시 예외 : 스택이 가득 참 ---//
 	public class OverflowIntStackException extends RuntimeException {
+		private static final long serialVersionUID = 1L;
+
 		public OverflowIntStackException() {
 		}
 	}
@@ -131,38 +135,46 @@ class Offsets3 {
 
 			mark[1][1] = 1;
 			StackList st = new StackList(50);
-			Items3 temp = new Items3(0, 0, 0);//N :: 0
+			Items3 temp = new Items3(0, 0, 0); //N :: 0
 			temp.x = 1;
 			temp.y = 1;
-			temp.dir = 3;//E:: 2 => SE : 3
-			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시
+			temp.dir = 2;//E:: 2 
+			mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시   ?
 			st.push(temp);
 
 			while (!st.isEmpty()) // stack not empty
 			{
+				// 현재 위치
 				Items3 tmp = st.pop(); // unstack
 				int i = tmp.x;
 				int j = tmp.y;
 				int d = tmp.dir;
 				mark[i][j] = 1;//backtracking 궤적은 1로 표시
+				
 				while (d < 8) // moves forward
 				{
 					// 다음 위치 
 					int g = i + moves[d].a;
 					int h = j + moves[d].b;
 					
+					// 원하는 지점에 도착
 					if ((g == ix) && (h == iy)) { // reached exit
-													// output path
-
+						temp.x = i;				  // output path
+						temp.y = j;
+						temp.dir = tmp.dir;
+						mark[temp.x][temp.y] = 1;
+						st.push(temp);	 
 					}
 					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
 						i = g; j = h;
+						mark[][]
 
 					} else {
-						
+						d++;
 					}
 
 				}
+				
 			}
 			System.out.println("no path in maze ");
 		}
