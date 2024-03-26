@@ -20,10 +20,29 @@ class PhyscData implements Comparable<PhyscData>{
 	@Override
 	public int compareTo(PhyscData o) {
 		// TODO Auto-generated method stub
-		return 0;
+		if(name.compareTo(o.name) < 0) {
+			return -1;
+		}else if(name.compareTo(o.name) > 0) {
+			return 1;
+		}else {
+			if(height < o.height)  {
+				return -1;
+			}else if(height < o.height)  {
+				return 1;
+			}else {
+				if(vision < o.vision ) {
+					return -1;
+				}else if(vision > o.vision) {
+					return 1;
+				}else {
+					return 0;
+				}
+			}
+		}
+		
 	}
     
-    
+	
 
 }
 public class Test_객체merge정렬 {
