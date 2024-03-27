@@ -135,6 +135,10 @@ class Offsets3 {
 
 		public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 
+			for(int i = 0; i < mark.length; i++) {
+				mark[i][0] = i;
+			}
+			
 			mark[1][1] = 1;
 			StackList st = new StackList(50);
 			Items3 temp = new Items3(0, 0, 0); //N :: 0
@@ -156,6 +160,8 @@ class Offsets3 {
 			while (!st.isEmpty()) // stack not empty
 			{
 				
+//				if(isfirst) isfirst = false;
+//				else mark[temp.x][temp.y] = 1;   //backtracking 궤적은 1로 표시
 			
 				if(isflag) break;
 				// 현재 위치
@@ -165,28 +171,28 @@ class Offsets3 {
 				int d = tmp.dir;
 //				System.out.println("i : " + i);
 //				System.out.println("j : " + j);
-				if(isfirst) isfirst = false;
-				else mark[i][j] = 1;   //backtracking 궤적은 1로 표시
 				
-//				System.out.println("i : " + i);
-//				System.out.println("j : " + j);
-//				System.out.println("d : " + d);
+				mark[tmp.x][tmp.y] = 1; 
+				
+
 //				System.out.println("size = top : " + st.size());
 				
-				System.out.println("st.dump : ");
-				st.dump();
+//				System.out.println("st.dump : ");
+//				st.dump();
 				// peek 및 pop 수정
+				System.out.println("i: " + i + " j:" + j);
 				while (d < 8) // moves forward
 				{
 					// 다음 위치 
+					
 					int g = i + moves[d].a;
 					int h = j + moves[d].b;					
 					
-//					System.out.println("g: " + g);
-//					System.out.println("h: " + h);
+					
+					System.out.println("g: " + g + " h:" + h + " d:" + d);
 					// 원하는 지점에 도착
 					if ((g == ix) && (h == iy)) { // reached exit // output path							
-						mark[g][h] = 2;	
+						mark[i][j] = 2;	
 						System.out.println("wanted path");
 						isflag = true;
 						break;
@@ -208,19 +214,23 @@ class Offsets3 {
 						
 						// 현재 좌표, 방향 stack에 넣어주기
 						// temp랑 tmp 다르다 => 새로 생성하는 객체 vs 이미 메모리에 한번 저장된 객체
-						tmp.dir = d;
-						System.out.print("tmp: ");
+//						temp.dir = d;
+						System.out.print("temp: ");
 						System.out.println(temp.toString());
-						System.out.println("before st.push :");
-						st.push(tmp);
-						
+//						System.out.println("before st.push :");
+						// 현재값 넣어주기
+						Items3 itm3 = new Items3(i,j,d);
+						st.push(itm3);
+						mark[i][j] = 2;//미로 찾기 궤적은 2로 표시
 						// 업데이트
 						i = g; j = h; 
-						tmp.x = g;	
-						tmp.y = h;	
-					
+//						// pop 을 위해 존재 temp
+//						temp.x = g;	
+//						temp.y = h;	
 						
-						mark[tmp.x][tmp.y] = 2;//미로 찾기 궤적은 2로 표시   						
+						
+						   						
+						
 						// 초기화
 						d = 0;
 						
@@ -232,6 +242,7 @@ class Offsets3 {
 					}
 
 				}
+				mark[i][j] = 1;
 //				System.out.println("last here");
 				
 			}
@@ -243,6 +254,7 @@ class Offsets3 {
 		static void showMatrix(int[][]d, int row, int col) {
 			for(int i = 0; i <= col; i++) System.out.print(i + "\t");
 			System.out.println();
+			System.out.println("-".repeat(130));
 //			System.out.println("=".repeat(50));
 			for (int i = 0; i <= row; i++) {
 				for (int j = 0; j <= col; j++) {
@@ -273,18 +285,19 @@ class Offsets3 {
 					{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }};
 			
 			int input1[][] = { // 12 x 15
-					{ 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 },
-					{ 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
-					{ 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 },
+					{ 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 },
+					{ 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
+					{ 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 },
 					{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0 },
 					{ 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-					{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
+					{ 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
 					{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
 					{ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
 					{ 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 },
 					{ 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
 					{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 },
 					{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }};
+			
 			
 			for (int ia = 0; ia < 8; ia++)
 				moves[ia] = new Offsets3(0, 0);//배열에 offsets 객체를 치환해야 한다.
