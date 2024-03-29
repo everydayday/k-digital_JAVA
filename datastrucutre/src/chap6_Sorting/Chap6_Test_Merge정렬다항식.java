@@ -20,7 +20,7 @@ class Polynomial3 implements Comparable<Polynomial3>{
     }
     @Override
     public int compareTo(Polynomial3 d2) { //지수가 같으면 계수로 비교
-    	System.out.println("d2: " + d2);
+    	//System.out.println("d2: " + d2);
     	if(d2.exp - exp == 0) return (int) (d2.coef - coef);
     	return d2.exp - exp;
     }
@@ -32,7 +32,9 @@ public class Chap6_Test_Merge정렬다항식 {
 		 //body를 지우고 작성 훈련 연습이 도움이 된다 
 		Polynomial3 temp[] = new Polynomial3[30];
 		//구현코드
-		int i = lefta; int j = leftb; int p = lefta;
+		int i = lefta; int j = leftb; int p = 0;
+//		System.out.println(i + "a[i] : " + a[i]);
+//		System.out.println(j + "a[j] : " + a[j]);
 		while(i <= righta & j <= rightb) {
 			if(a[i].compareTo(a[j]) < 0) {
 				temp[p++] = a[i++];
@@ -64,8 +66,10 @@ public class Chap6_Test_Merge정렬다항식 {
 	static void MergeSort(Polynomial3[] a, int left, int right) {
 		int mid = (left+right)/2;
 		if (left == right) return;
+		//System.out.println("mid:" + mid);
 		MergeSort(a, left, mid);
 		MergeSort(a, mid+1, right);
+		//System.out.println("left,mid,right" + left + mid + right);
 		merge(a, left, mid, mid+1, right);
 		return;
 	}
@@ -126,8 +130,8 @@ public class Chap6_Test_Merge정렬다항식 {
 		//추가된 항의 수를 count하여 terms으로 리턴한다.
 		//구현코드
 		for(int i = 0; i < terms; i++) {
-			System.out.println("terms:" + terms);
-			System.out.println("z[i].exp:"+ z[i].exp);
+//			System.out.println("terms:" + terms);
+//			System.out.println("z[i].exp:"+ z[i].exp);
 			if(z[i].exp == term.exp) {
 				z[i].coef += term.coef;				
 				return terms;
@@ -199,6 +203,7 @@ public class Chap6_Test_Merge정렬다항식 {
 
 		ShowPolynomial("다항식 x = ", x, -1);
 		ShowPolynomial("다항식 y = ", y, -1);
+		//System.out.println("x.length -1 : " + (x.length-1));
 		MergeSort(x, 0, x.length-1); // 배열 x를 퀵정렬
 		MergeSort(y, 0, y.length-1); // 배열 x를 퀵정렬 // 인덱스로 접근하니 -1해줘야
 		ShowPolynomial("정렬후 다항식 x = ", x, -1);

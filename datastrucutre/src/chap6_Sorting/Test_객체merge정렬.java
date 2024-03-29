@@ -48,7 +48,32 @@ class PhyscData implements Comparable<PhyscData>{
 public class Test_객체merge정렬 {
 	// --- 배열 요소 a[idx1]와 a[idx2]의 값을 교환 ---//
 	static void merge(PhyscData[] a, int lefta, int righta, int leftb, int rightb ) {
-		
+		int i = lefta; int j = leftb;
+		int p = lefta;
+		while(i <= righta & j <= rightb) {
+			if(a[i].compareTo(a[j]) < 0) {
+				a[p] = a[i++];				
+			}
+			else if(a[i].compareTo(a[j]) > 0) {
+				a[p] = a[j++];
+			}
+			else {
+				a[p++] = a[i++];
+				a[p] = a[j++];
+				
+			}
+			p++;
+		}
+		if(i > righta) {
+			while(j <= rightb) {
+				a[p++] = a[j++];
+			}
+		}
+		if(j > rightb) {
+			while(i <= righta) {
+				a[p++] = a[i++];
+			}
+		}
 
 	}
 
