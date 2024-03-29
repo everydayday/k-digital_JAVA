@@ -74,13 +74,11 @@ class LinkedList2 {
 	{
 //		Node2 q, current = first;
 //		q = current;
-		Node2 p = new Node2(null);
-		Node2 q = first;
-		p.link = q;
 		
+		Node2 q = first, p = null;		
 		while(q != null) {
 			if(cc.compare(element, q.data) == 0) {
-				if(q == first) first = null;	// 처음값 초기화
+				if(q == first) first = q.link;	// 처음값 초기화
 				else{
 					p.link = q.link;
 				}
@@ -89,7 +87,6 @@ class LinkedList2 {
 			p = p.link;
 			q = q.link;			
 		}
-
 		return -1;// 삭제할 대상이 없다.
 	}
 	public void Show() { // 전체 리스트를 순서대로 출력한다.

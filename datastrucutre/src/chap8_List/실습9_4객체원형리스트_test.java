@@ -1,4 +1,4 @@
-package Chap8_List;
+package chap8_List;
 
 /*
  * 정수 리스트 > 객체 리스트> 객체 원형 리스트 
@@ -89,10 +89,20 @@ class CircularList {
 	 */
 	public int Delete(SimpleObject3 element, Comparator<SimpleObject3> cc) // delete the element
 	{
-		Node3 q, current = first.link;
-		q = current;
-
-		return -1;// 삭제할 대상이 없다.
+//		Node3 q, current = first.link;
+//		q = current; ...?				
+		Node3 p = new Node3(null);
+		Node3 q = first;
+		p.link = q;
+		
+		int i = 1; // 첫번재 노드부터... 몇번째 노드인지 반환하기
+		
+		while(q != null) {			
+			if(cc.compare(element, q.data) == 0) return i;			
+			p = p.link;
+			q = q.link;			
+		}
+		return -1;// 삭제할 대상이 없다. ( clear되어서 data가 없는 경우도 포함)
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
@@ -103,8 +113,44 @@ class CircularList {
 
 	public void Add(SimpleObject3 element, Comparator<SimpleObject3> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
+//		Node3 newNode = new Node3(element);
+//		// 처음 값 대입
+//		if(first.link == first) {first.link = newNode; return;}
+//		Node3 p = first.link;
+//		// 초기값 null 조건문 안 해줘도 되네
+//		while(cc.compare(newNode.data, p.data) > 0 ) {
+//			p = p.link;
+//		}
+//		// 처음에 넣는 경우
+//		if(p == first) {
+//			first.link = newNode;
+//			newNode.link = p;		
+//		}
+//		else {
+//			// 간단...???
+//			Node3 q = p;
+//			while(q.link != p) {
+//				q = q.link;
+//			}
+//			q.link = newNode;
+//			newNode.link = p;
+//		}	
+		
 		Node3 newNode = new Node3(element);
-	
+		Node3 p = first, q = first.link;
+		
+		while(q != first) {
+			if(cc.compare(newNode.data, q.data) < 0) {
+				p = p.link;
+				q = q.link;
+			}else {
+				p.link = newNode;
+				newNode.link = q;
+				return;
+			}
+		}
+		p.link = newNode;
+		newNode.link = q;		
 	}
 
 	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { // 전체 리스트를 순서대로 출력한다.
@@ -112,7 +158,7 @@ class CircularList {
 
 		return false;
 	}
-	void Merge(LinkedList1 b) {
+	void Merge(CircularList b) {	// LinkedList1 =>
 		/*
 		 * 연결리스트 a,b에 대하여 a = a + b
 		 * merge하는 알고리즘 구현으로 in-place 방식으로 합병/이것은 새로운 노드를 만들지 않고 합병하는 알고리즘 구현
@@ -122,7 +168,7 @@ class CircularList {
 	}
 }
 
-public class 실습9_4객체원형리스트 {
+public class 실습9_4객체원형리스트_test {
 	enum Menu {
 		Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("합병"), Exit("종료");
 
@@ -197,7 +243,7 @@ public class 실습9_4객체원형리스트 {
 				for (int i = 0; i < count; i++) {//3개의 객체를 연속으로 입력받아 l2 객체를 만든다 
 					data = new SimpleObject3();
 					data.scanData("병합", 3);
-					l2.Add(data, SimpleObject5.NO_ORDER );				
+					l2.Add(data, SimpleObject3.NO_ORDER );				
 				}
 				l.Merge(l2);
 			case Exit: // 꼬리 노드 삭제

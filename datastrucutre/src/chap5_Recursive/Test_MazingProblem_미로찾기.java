@@ -163,7 +163,7 @@ class Offsets3 {
 //				if(isfirst) isfirst = false;
 //				else mark[temp.x][temp.y] = 1;   //backtracking 궤적은 1로 표시
 			
-				if(isflag) break;
+				
 				// 현재 위치
 				Items3 tmp = st.pop(); // unstack
 				int i = tmp.x;
@@ -196,27 +196,15 @@ class Offsets3 {
 						System.out.println("wanted path");
 						isflag = true;
 						break;
-					}					
-					
-//					if((maze[g][h] == 0) && (mark[g][h] == 2)) {	// backtracking : 한번 갔던 경로라면
-//						i = g; j = h; 
-//						temp.x = g;	
-//						temp.y = h;	
-//						d = temp.dir;
-//						mark[temp.x][temp.y] = 1;//backtracking 궤적은 1로 표시   
-//						st.push(temp);
-//						
-//						// 초기화
-//						d ++;
-//					}
+					}				
 					if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position => 갈 수 있고 한 번도 안 가본 곳
 						
 						
 						// 현재 좌표, 방향 stack에 넣어주기
 						// temp랑 tmp 다르다 => 새로 생성하는 객체 vs 이미 메모리에 한번 저장된 객체
 //						temp.dir = d;
-						System.out.print("temp: ");
-						System.out.println(temp.toString());
+//						System.out.print("temp: ");
+//						System.out.println(temp.toString());
 //						System.out.println("before st.push :");
 						// 현재값 넣어주기
 						Items3 itm3 = new Items3(i,j,d);
@@ -226,15 +214,9 @@ class Offsets3 {
 						i = g; j = h; 
 //						// pop 을 위해 존재 temp
 //						temp.x = g;	
-//						temp.y = h;	
-						
-						
-						   						
-						
+//						temp.y = h;		
 						// 초기화
-						d = 0;
-						
-						
+						d = 0;						
 						
 
 					} else {						
@@ -242,6 +224,7 @@ class Offsets3 {
 					}
 
 				}
+				if(isflag) break;	// 원하는 위치 도달 시 break
 				mark[i][j] = 1;
 //				System.out.println("last here");
 				
@@ -325,9 +308,9 @@ class Offsets3 {
 			System.out.println("mark::");
 			showMatrix(mark, 13, 16);
 
-			path(maze, mark, 12, 15);
+			path(maze, mark, 13, 15);
 			System.out.println("mark::");
-			showMatrix(mark, 12, 15);
+			showMatrix(mark, 13, 16);
 			
 		}
 	}
