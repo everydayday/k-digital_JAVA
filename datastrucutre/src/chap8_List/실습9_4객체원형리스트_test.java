@@ -1,3 +1,5 @@
+// 원형으로 만들었을 때의 유용성을 잘 못 느끼겠다.
+
 package chap8_List;
 
 /*
@@ -88,26 +90,27 @@ class CircularList {
 	 * (cc.compare(arr[i], arr[j])> 0) swap(arr, i, j); } }
 	 */
 	public int Delete(SimpleObject3 element, Comparator<SimpleObject3> cc) // delete the element
-	{
-//		Node3 q, current = first.link;
-//		q = current; ...?				
+	{			
 		Node3 p = new Node3(null);
 		Node3 q = first;
-		p.link = q;
-		
-		int i = 1; // 첫번재 노드부터... 몇번째 노드인지 반환하기
+		p.link = q;		
 		
 		while(q != null) {			
-			if(cc.compare(element, q.data) == 0) return i;			
-			p = p.link;
-			q = q.link;			
+			if(cc.compare(element, q.data) == 0) {
+				p = p.link;
+				q = q.link;					
+				return 1;
+			} 								
 		}
 		return -1;// 삭제할 대상이 없다. ( clear되어서 data가 없는 경우도 포함)
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node3 p = first.link;
-		SimpleObject3 so;
+		while(p != first) {
+			System.out.println(p.data.toString());
+			p = p.link;
+		}
 
 	}
 
@@ -139,8 +142,9 @@ class CircularList {
 		Node3 newNode = new Node3(element);
 		Node3 p = first, q = first.link;
 		
+		
 		while(q != first) {
-			if(cc.compare(newNode.data, q.data) < 0) {
+			if(cc.compare(q.data, newNode.data) < 0) {
 				p = p.link;
 				q = q.link;
 			}else {
@@ -153,8 +157,12 @@ class CircularList {
 		newNode.link = q;		
 	}
 
-	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { // 전체 리스트를 순서대로 출력한다.
-		Node3 q, current = first.link;
+	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { 
+		Node3 p = first.link;
+		while(p != first) {
+			if(cc.compare(element, p.data) == 0) return true;
+			p = p.link;
+		}
 
 		return false;
 	}
@@ -165,6 +173,8 @@ class CircularList {
 		 * 난이도 등급: 최상급
 		 * 회원번호에 대하여 a = (3, 5, 7), b = (2,4,8,9)이면 a = (2,3,4,5,8,9)가 되도록 구현하는 코드
 		 */
+	
+		
 	}
 }
 
